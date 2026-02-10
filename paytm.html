@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pay with Paytm - RR Hair Skin Makeup</title>
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      background: #0b0b0f;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .box{
+      max-width: 500px;
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 0 30px rgba(0,0,0,0.6);
+    }
+    h1{
+      font-family: cursive;
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+    p{
+      opacity: 0.9;
+      line-height: 1.5;
+    }
+    .btn{
+      display: block;
+      margin-top: 15px;
+      padding: 14px;
+      border-radius: 12px;
+      background: #ff2a6d;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .btn:hover{
+      transform: scale(1.04);
+      background: #ff004f;
+    }
+    .btn2{
+      display: block;
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 12px;
+      background: transparent;
+      border: 2px solid #ff2a6d;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .btn2:hover{
+      background: #ff2a6d;
+      transform: scale(1.04);
+    }
+    .note{
+      margin-top: 20px;
+      font-size: 14px;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <h1>RR Hair, Skin & Makeup</h1>
+    <p>Select a payment option and complete your booking securely.</p>
+
+    <!-- Paytm UPI Payment -->
+    <a class="btn" target="_blank"
+      href="upi://pay?pa=8840350388@paytm&pn=RR%20Studio&am=499&cu=INR">
+      Pay ₹499 via Paytm UPI
+    </a>
+
+    <a class="btn2" target="_blank"
+      href="upi://pay?pa=8840350388@paytm&pn=RR%20Studio&am=999&cu=INR">
+      Pay ₹999 Full Payment
+    </a>
+
+    <!-- WhatsApp Confirmation -->
+    <a class="btn2" target="_blank"
+      href="https://wa.me/918840350388?text=Hello%20RR%20Studio%2C%20I%20have%20done%20the%20payment.%20Please%20confirm%20my%20booking.">
+      Send Payment Screenshot on WhatsApp
+    </a>
+
+    <p class="note">
+      Note: Payment link works best on mobile. If it doesn't open, use WhatsApp to request QR code.
+    </p>
+
+    <a class="btn2" href="index.html">⬅ Back to Website</a>
+  </div>
+
+</body>
+</html>

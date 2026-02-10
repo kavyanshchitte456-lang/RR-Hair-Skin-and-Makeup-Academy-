@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="RR Hair, Skin & Makeup - Professional Beauty Studio" />
+  <title>RR Hair, Skin & Makeup</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0b0b10;
+      --card: rgba(255,255,255,0.06);
+      --glass: rgba(255,255,255,0.12);
+      --border: rgba(255,255,255,0.12);
+      --text: #f6f6f6;
+      --muted: #cfcfcf;
+      --accent: #ff4d8d;
+      --accent2: #8b5cf6;
+      --success: #22c55e;
+      --danger: #ef4444;
+      --shadow: 0 20px 60px rgba(0,0,0,0.6);
+      --radius: 18px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #1c0d2a, #0b0b10);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #09090f; }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 50px; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: auto;
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .logo h1 {
+      font-family: "Great Vibes", cursive;
+      font-size: 34px;
+      font-weight: 400;
+      color: var(--accent);
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      font-size: 12px;
+      color: var(--muted);
+      margin-left: 2px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 500;
+      opacity: 0.85;
+      transition: 0.25s ease;
+    }
+
+    nav ul li a:hover {
+      opacity: 1;
+      color: var(--accent);
+    }
+
+    .btn {
+      padding: 10px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: linear-gradient(90deg, rgba(255,77,141,0.9), rgba(139,92,246,0.9));
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.25s ease;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      opacity: 0.95;
+    }
+
+    .btn.outline {
+      background: transparent;
+      border: 1px solid var(--border);
+    }
+
+    .btn.outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .hero {
+      max-width: 1200px;
+      margin: auto;
+      padding: 70px 18px 40px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .hero h2 {
+      font-family: "Great Vibes", cursive;
+      font-size: 58px;
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 10px;
+      text-shadow: 0 10px 40px rgba(255,77,141,0.35);
+    }
+
+    .hero p {
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 18px;
+      font-size: 15px;
+      max-width: 560px;
+    }
+
+    .hero .tags {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .tag {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .hero-card {
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
+      border: 1px solid var(--border);
+      padding: 22px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(255,77,141,0.3), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(139,92,246,0.25), transparent 55%);
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .hero-card .inner {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-card h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .hero-card p {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .stat {
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.10);
+      text-align: center;
+    }
+
+    .stat strong {
+      font-size: 18px;
+      color: #fff;
+      display: block;
+    }
+
+    .stat span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    section {
+      max-width: 1200px;
+      margin: auto;
+      padding: 55px 18px;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+
+    .section-title h2 {
+      font-family: "Great Vibes", cursive;
+      font-size: 44px;
+      font-weight: 400;
+      color: #fff;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 540px;
+      line-height: 1.6;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      padding: 18px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+      transition: 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255,77,141,0.35);
+    }
+
+    .card h3 {
+      font-size: 16px;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .card p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .price {
+      margin-top: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 15px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .photo {
+      height: 170px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: linear-gradient(120deg, rgba(255,77,141,0.35), rgba(139,92,246,0.35));
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .photo::after {
+      content: "RR Studio";
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      background: rgba(0,0,0,0.45);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #fff;
+    }
+
+    .form-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    form {
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    form label {
+      display: block;
+      margin-top: 12px;
+      font-size: 13px;
+      color: #fff;
+      opacity: 0.9;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      margin-top: 6px;
+      padding: 12px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.4);
+      color: white;
+      outline: none;
+      font-size: 14px;
+      transition: 0.2s ease;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: rgba(255,77,141,0.7);
+      box-shadow: 0 0 0 4px rgba(255,77,141,0.12);
+    }
+
+    textarea {
+      resize: none;
+      min-height: 110px;
+    }
+
+    .notice {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .safe {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(34,197,94,0.3);
+      background: rgba(34,197,94,0.08);
+      color: #bbf7d0;
+      font-size: 13px;
+      display: none;
+    }
+
+    .error {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(239,68,68,0.3);
+      background: rgba(239,68,68,0.08);
+      color: #fecaca;
+      font-size: 13px;
+      display: none;
+    }
+
+    footer {
+      padding: 30px 18px;
+      border-top: 1px solid var(--border);
+      background: rgba(0,0,0,0.35);
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .floating {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 9999;
+    }
+
+    .float-btn {
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(10px);
+      color: white;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.25s ease;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .float-btn:hover {
+      transform: translateY(-3px);
+      border-color: rgba(255,77,141,0.45);
+    }
+
+    .float-btn.whatsapp {
+      background: rgba(34,197,94,0.2);
+      border-color: rgba(34,197,94,0.35);
+    }
+
+    .float-btn.zoom {
+      background: rgba(59,130,246,0.2);
+      border-color: rgba(59,130,246,0.35);
+    }
+
+    .float-btn.payment {
+      background: rgba(255,77,141,0.22);
+      border-color: rgba(255,77,141,0.40);
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 40px;
+      }
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .form-wrap {
+        grid-template-columns: 1fr;
+      }
+      .stats {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="nav">
+      <div class="logo">
+        <h1>RR Studio</h1>
+        <span>Hair • Skin • Makeup</span>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#payment">Payment</a></li>
+          <li><a href="#booking">Booking</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a class="btn" href="#booking">Book Now</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div>
+      <h2>RR Hair, Skin & Makeup</h2>
+      <p>
+        Welcome to RR Studio ✨ We provide premium hair styling, skin care treatments,
+        bridal makeup, party makeup, facial therapies, and grooming services with
+        professional hygiene & beauty standards.
+      </p>
+
+      <div class="tags">
+        <div class="tag">Bridal Makeup</div>
+        <div class="tag">Hair Styling</div>
+        <div class="tag">Facials & Glow</div>
+        <div class="tag">Party Makeup</div>
+        <div class="tag">Hair Spa</div>
+        <div class="tag">Skin Treatments</div>
+      </div>
+
+      <div class="hero-actions">
+        <a class="btn" href="#booking">Book Appointment</a>
+        <a class="btn outline" href="#payment">Pay Now</a>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <div class="inner">
+        <h3>Premium Beauty Experience</h3>
+        <p>
+          We use safe products, clean tools, professional makeup kits, and expert artists.
+          Your beauty is our priority 💎
+        </p>
+
+        <div class="stats">
+          <div class="stat">
+            <strong>500+</strong>
+            <span>Happy Clients</span>
+          </div>
+          <div class="stat">
+            <strong>100%</strong>
+            <span>Hygiene</span>
+          </div>
+          <div class="stat">
+            <strong>24/7</strong>
+            <span>Support</span>
+          </div>
+        </div>
+
+        <p class="notice" style="margin-top:14px;">
+          🔒 Secure booking form + safe validation included.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="section-title">
+      <h2>Our Services</h2>
+      <p>
+        We provide professional hair, skin, and makeup services for weddings, parties,
+        events, and personal grooming.
+      </p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Bridal Makeup</h3>
+        <p>Complete bridal look with HD/Waterproof makeup, hair styling, draping & accessories.</p>
+      </div>
+
+      <div class="card">
+        <h3>Party Makeup</h3>
+        <p>Glam makeup for birthday, engagement, functions and professional photoshoots.</p>
+      </div>
+
+      <div class="card">
+        <h3>Hair Styling</h3>
+        <p>Haircut, hair spa, smoothening, keratin, hair color, and hair treatment.</p>
+      </div>
+
+      <div class="card">
+        <h3>Skin Care</h3>
+        <p>Facials, cleanup, detan, acne treatment, glow therapy, and skin polishing.</p>
+      </div>
+
+      <div class="card">
+        <h3>Mehndi & Nail Art</h3>
+        <p>Bridal mehndi, nail extensions, nail art, manicure & pedicure packages.</p>
+      </div>
+
+      <div class="card">
+        <h3>Pre-Bridal Packages</h3>
+        <p>Full skin + hair + grooming sessions before your wedding day for perfect glow.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing">
+    <div class="section-title">
+      <h2>Pricing Plans</h2>
+      <p>
+        Choose a plan that suits your event. Prices can vary depending on makeup type,
+        skin condition and hair length.
+      </p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Basic Makeup</h3>
+        <p>Simple party makeup, light base, lipstick, eyeshadow, setting spray.</p>
+        <div class="price">₹999 - ₹1999</div>
+      </div>
+
+      <div class="card">
+        <h3>HD Makeup</h3>
+        <p>HD base, contouring, full eye makeup, lashes, long-lasting finish.</p>
+        <div class="price">₹2499 - ₹4999</div>
+      </div>
+
+      <div class="card">
+        <h3>Bridal Premium</h3>
+        <p>Bridal HD + hairstyle + draping + waterproof products + touch-up kit.</p>
+        <div class="price">₹7999 - ₹19999</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery">
+    <div class="section-title">
+      <h2>Gallery</h2>
+      <p>
+        Replace these demo blocks with your real salon photos.
+      </p>
+    </div>
+
+    <div class="gallery">
+      <div class="photo"></div>
+      <div class="photo"></div>
+      <div class="photo"></div>
+      <div class="photo"></div>
+      <div class="photo"></div>
+      <div class="photo"></div>
+      <div class="photo"></div>
+      <div class="photo"></div>
+    </div>
+  </section>
+
+  <!-- Payment -->
+  <section id="payment">
+    <div class="section-title">
+      <h2>Payment</h2>
+      <p>
+        Pay securely to confirm your appointment. Choose your preferred payment option.
+      </p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Pay with UPI</h3>
+        <p>Fast & secure UPI payment (Google Pay / PhonePe / Paytm).</p>
+
+        <a class="btn" target="_blank"
+          href="upi://pay?pa=YOURUPIID@upi&pn=RR%20Studio&am=499&cu=INR">
+          Pay ₹499 Now
+        </a>
+
+        <p class="notice" style="margin-top:10px;">
+          ⚠ Replace <b>YOURUPIID@upi</b> with your real UPI ID.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Pay via QR Code</h3>
+        <p>Scan QR code in salon or request QR on WhatsApp.</p>
+
+        <a class="btn outline" target="_blank"
+          href="https://wa.me/918840350388?text=Hello%20RR%20Studio%2C%20please%20send%20your%20UPI%20QR%20code%20for%20payment.">
+          Request QR on WhatsApp
+        </a>
+      </div>
+
+      <div class="card">
+        <h3>Pay via Razorpay</h3>
+        <p>Card, UPI, Netbanking supported (secure gateway).</p>
+
+        <a class="btn" target="_blank" href="https://razorpay.com/payment-links/">
+          Pay with Razorpay
+        </a>
+
+        <p class="notice" style="margin-top:10px;">
+          Later replace this with your own Razorpay payment link.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking -->
+  <section id="booking">
+    <div class="section-title">
+      <h2>Book Appointment</h2>
+      <p>
+        Fill the form to book your slot. We will confirm via WhatsApp or call.
+      </p>
+    </div>
+
+    <div class="form-wrap">
+      <form id="bookingForm">
+        <h3 style="margin-bottom:8px;">Appointment Form</h3>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">
+          Secure booking form with validation.
+        </p>
+
+        <label>Full Name</label>
+        <input type="text" id="name" placeholder="Enter your name" required />
+
+        <label>Phone Number</label>
+        <input type="tel" id="phone" placeholder="Enter phone number" required />
+
+        <label>Service</label>
+        <select id="service" required>
+          <option value="">Select Service</option>
+          <option>Bridal Makeup</option>
+          <option>Party Makeup</option>
+          <option>Hair Styling</option>
+          <option>Hair Spa</option>
+          <option>Skin Facial</option>
+          <option>Detan</option>
+          <option>Pre Bridal Package</option>
+          <option>Mehndi & Nail Art</option>
+        </select>
+
+        <label>Date</label>
+        <input type="date" id="date" required />
+
+        <label>Message</label>
+        <textarea id="message" placeholder="Any details about your booking..."></textarea>
+
+        <button type="submit" class="btn" style="width:100%;margin-top:14px;">
+          Confirm Booking
+        </button>
+
+        <div class="safe" id="successBox">✅ Booking details saved successfully. Redirecting to WhatsApp...</div>
+        <div class="error" id="errorBox">❌ Invalid input. Please check your details.</div>
+
+        <p class="notice">
+          🔐 Security: This form uses validation & sanitization to prevent unsafe characters.
+        </p>
+      </form>
+
+      <div class="card">
+        <h3>Zoom Consultation</h3>
+        <p>
+          Want a bridal look discussion online? Book a Zoom meeting and finalize your style,
+          products, and makeup theme before the event.
+        </p>
+
+        <div style="margin-top:14px;">
+          <a class="btn" href="https://zoom.us/" target="_blank">Open Zoom</a>
+          <a class="btn outline" href="mailto:rrstudio@gmail.com" style="margin-left:8px;">Email Us</a>
+        </div>
+
+        <p class="notice" style="margin-top:14px;">
+          📌 You can add your own Zoom meeting link later.
+        </p>
+
+        <hr style="margin:18px 0;border:0;border-top:1px solid rgba(255,255,255,0.12);">
+
+        <h3>Working Hours</h3>
+        <p>🕘 Mon - Sun: 10:00 AM - 9:00 PM</p>
+        <p>📍 Location: Add your salon address here</p>
+        <p>📞 Contact: 8840350388</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="section-title">
+      <h2>Contact Us</h2>
+      <p>
+        Contact RR Hair, Skin & Makeup anytime
